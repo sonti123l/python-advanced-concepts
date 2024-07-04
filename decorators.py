@@ -1,6 +1,6 @@
 # simple decorators are nothing but one function is passed as an argument to another function
 #basically we use @ sign as the decorator to a decorated function which takes function as an argument
-#simple decorator underestanding 
+# #simple decorator underestanding 
 def say_hello(func):
     def wrapper_function():
         print("It is a wrapper function")
@@ -43,3 +43,26 @@ def fucntion_to_be_called():
 fucntion_to_be_called()  ## it is called decorator calling function
 
 #now basically the decorator is consisting of properities,functions,classes and many more
+#And for example if i wanted to get the name of the decorated function as the created function call 
+#Then we need to use the functools package to get the decorated function as the name otherwise it gets the wrapper function as the name let's check it.
+#with the function tools the name of the function by using __name__ we check the output..
+from functools import wraps
+
+def say_hello(func):
+    @wraps(func)
+    def wrapper():
+        print("It is a wrapper function")
+        func()
+        print("this wrapper function is acting locally inside the say_hello function")
+        """so these functions are called with in a parent function they can't be called outside the parent class function"""
+        """so to use these inside functions outside of that parent function we need to return that function by taking off that paranthesis because by returning function it directly called when called but by that we can assign that function to a variable"""
+    return wrapper
+
+@say_hello
+def fucntion_to_be_called():
+    print("It is a decorated function that is passed as a parameter to the parent class function")
+
+print(fucntion_to_be_called.__name__)
+
+##output for this is
+#fucntion_to_be_called
