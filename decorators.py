@@ -66,3 +66,49 @@ print(fucntion_to_be_called.__name__)
 
 ##output for this is
 #fucntion_to_be_called
+
+#we have different type of decorators in python 
+# they are @property,@classmethod,@staticmethod 
+#First one @property method is used for getter,setter to a class attributes we take an attribute value and get it as a property to that property we can change there value 
+#Second @classmethod which used for a class to be called directly when this class method is called
+#Third @staticmethod is used for that method which returns values doesn't change anytime
+class Backer:
+    def __init__(self,coin):
+        self.coin = coin
+        self.ruppees_counter = self.coin
+        self._coins = 0
+
+    @property
+    def juice_machine(self):
+        return self.coin*self.ruppees_counter
+
+    @juice_machine.setter
+    def juice_machine(self,coins):
+        if coins >= self.coin:
+            self._coins = coins*self.ruppees_counter
+            return("Great have a nice coin") 
+        else:
+            return("Not having sufficient coins to get a coin Please check again...")
+
+    @classmethod
+    def call_this_class_method(cls):
+        return cls(30)
+
+    @staticmethod
+    def pie():
+        return f"pie value is {3.1474964}"
+
+#creating an object for this 
+user_came_for_juice = Backer(50)
+# user_came_for_juice.juice_machine = 500
+# user_message = user_came_for_juice.juice_machine
+# print(user_message)
+
+#class method calling 
+user = Backer(30).call_this_class_method()
+print(user.coin)
+#class object address is assigned to a variable so that we can access the attributes and methods
+
+#static emthod calling
+print(user_came_for_juice.pie) #user_came_for_juice.pie this is returning the address of the function 
+#calling that function keep the paranthesis
